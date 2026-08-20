@@ -1,92 +1,54 @@
-import { ValidSkills } from "./constants";
+import { Experience } from "@/types/experience";
 
-export interface ExperienceInterface {
-  id: string;
-  position: string;
-  company: string;
-  location: string;
-  startDate: Date;
-  endDate: Date | "Present";
-  description: string[];
-  achievements: string[];
-  skills: ValidSkills[];
-  companyUrl?: string;
-  logo?: string;
-}
-
-export const experiences: ExperienceInterface[] = [
+export const experiences: Experience[] = [
   {
-    id: "ubs",
-    position: "Software Development Engineer",
-    company: "UBS",
-    location: "Mumbai, India",
-    startDate: new Date("2024-08-01"),
+    title: "Frontend Engineer",
+    company: "Freelance",
+    location: "United Kingdom",
+    startDate: "2021",
     endDate: "Present",
     description: [
-      "Shipped production features within the first month for a trader-facing P&L dashboard used by global stakeholders.",
-      "Led the migration from Kendo UI to UBS’s internal design system to reduce UI inconsistencies and improve render performance.",
-      "Designed and automated a daily FX rate ingestion pipeline using Databricks (Python, Spark SQL) and Java services.",
+      "Building data-rich web applications using React, TypeScript, and Next.js",
+      "Achieved 95+ Lighthouse scores through performance optimization",
+      "Integrated real-time WebSocket connections for AI video intelligence",
+      "Collaborated with designers to create accessible, pixel-perfect interfaces",
     ],
-    achievements: [
-      "Shipped production features within the first month for a trader-facing P&L dashboard used by global stakeholders.",
-      "Led migration from Kendo UI to UBS’s internal design system, reducing UI inconsistencies and improving render performance across core dashboards.",
-      "Designed and automated a daily FX rate ingestion pipeline using Databricks (Python, Spark SQL) and Java services, eliminating manual rate updates.",
-      "Won UBS AI Venture Challenge by building data transformation and anomaly detection pipelines on trading datasets.",
-      "Led a 12-member team in an internal hackathon to build an AI-powered tool that generates GitLab tickets, test cases, and requirement summaries.",
-    ],
-    skills: ["Typescript", "React", "Databricks", "Java", "Python"],
-    companyUrl: "https://www.ubs.com",
-    logo: "/experience/keys-logo.png",
   },
   {
-    id: "muze-ai",
-    position: "Founding Engineer",
-    company: "Muze AI",
-    location: "Bengaluru, India",
-    startDate: new Date("2023-10-01"),
-    endDate: new Date("2024-03-01"),
+    title: "Pastor & Mission-Driven Community Leader",
+    company: "Italian Union",
+    location: "Italy",
+    startDate: "2018",
+    endDate: "2022",
     description: [
-      "Improved LLM function-calling accuracy through structured prompt design and response validation.",
-      "Developed APIs and integrated Slack, Google Workspace, and HubSpot automations via FastAPI.",
-      "Migrated ML inference from Replicate to AWS SageMaker to reduce cold-start latency.",
+      "Shepherded a 5-church multicultural district serving 500+ community members",
+      "Developed communication strategies for Gen Z, Millennials, and parents",
+      "Led cross-functional teams for large-scale community events",
+      "Specialized in intergenerational mediation and pastoral counseling",
     ],
-    achievements: [
-      "Improved LLM function-calling accuracy by ~40% through structured prompt design and response validation.",
-      "Developed APIs and integrated Slack, Google Workspace, and HubSpot automations via FastAPI.",
-      "Migrated ML inference from Replicate to AWS SageMaker, reducing cold-start latency by ~30%.",
-      "Created a Next.js dashboard for user analytics and a demo video explaining the implementation.",
-    ],
-    skills: ["FastAPI", "Python", "AWS", "Next.js", "React", "Typescript"],
-    companyUrl: "https://muzecmo.com",
-    logo: "/experience/muzeai-logo.png",
   },
   {
-    id: "builtdesign",
-    position: "Web Developer Intern",
-    company: "Builtdesign",
-    location: "Nagpur, India",
-    startDate: new Date("2021-07-01"),
-    endDate: new Date("2022-07-01"),
+    title: "Web Developer",
+    company: "Stockholm-Ghana SDA Church",
+    location: "Sweden / Ghana",
+    startDate: "2024",
+    endDate: "Present",
     description: [
-      "Developed websites using React, Angular, and GraphQL.",
-      "Set up AWS servers and CI/CD pipelines.",
-      "Built a multi-page PDF reader for large files (>300MB).",
+      "Built responsive websites with interactive features and media libraries",
+      "Optimized website performance, achieving 30% faster load times",
+      "Created Bible study platform with searchable content for 500+ users",
     ],
-    achievements: [
-      "Developed websites using React, Angular, and GraphQL; reduced API load time by 30%.",
-      "Set up AWS servers and CI/CD pipelines, scaling traffic to 3,000+ users/day.",
-      "Built a multi-page PDF reader for large files (>300MB) to boost user engagement.",
+  },
+  {
+    title: "Digital Content & Web Developer",
+    company: "@Sha & Ola",
+    location: "Remote",
+    startDate: "2024",
+    endDate: "Present",
+    description: [
+      "Architected daily devotional content strategy targeting Gen Z and Millennials",
+      "Managed full visual brand identity using Sage Green & Charcoal",
+      "Produced educational text-on-screen content for TikTok and Instagram",
     ],
-    skills: [
-      "React",
-      "Angular",
-      "GraphQL",
-      "AWS",
-      "HTML 5",
-      "CSS 3",
-      "Javascript",
-    ],
-    companyUrl: "https://builtdesign.in",
-    logo: "/experience/builtdesign-logo.png",
   },
 ];

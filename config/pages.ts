@@ -1,85 +1,44 @@
-import { ValidPages } from "./constants";
-
-type PagesConfig = {
-  [key in ValidPages]: {
-    title: string;
-    description: string;
-    metadata: {
-      title: string;
-      description: string;
-    };
-    // featuredDescription: string;
-  };
-};
-
-export const pagesConfig: PagesConfig = {
+export const pagesConfig = {
   home: {
-    title: "Home",
-    description: "Welcome to my portfolio website.",
+    title: "Felix Cobbinah",
+    description: "Frontend Engineer | Digital Shepherd",
     metadata: {
-      title: "Home",
-      description: "Naman Barkiya's portfolio website.",
-    },
-  },
-  skills: {
-    title: "Skills",
-    description: "Key skills that define my professional identity.",
-    metadata: {
-      title: "Skills",
-      description:
-        "Naman Barkiya's key skills that define his professional identity.",
+      title: "Felix Cobbinah - Frontend Engineer",
     },
   },
   projects: {
     title: "Projects",
-    description: "Showcasing impactful projects and technical achievements.",
+    description: "Building digital experiences with empathy and clarity",
     metadata: {
-      title: "Projects",
-      description: "Naman Barkiya's projects in building web applications.",
-    },
-  },
-  contact: {
-    title: "Contact",
-    description: "Let's connect and explore collaborations.",
-    metadata: {
-      title: "Contact",
-      description: "Contact Naman Barkiya.",
-    },
-  },
-  contributions: {
-    title: "Contributions",
-    description: "Open-source contributions and community involvement.",
-    metadata: {
-      title: "Contributions",
-      description:
-        "Naman Barkiya's open-source contributions and community involvement.",
-    },
-  },
-  resume: {
-    title: "Resume",
-    description: "Naman Barkiya's resume.",
-    metadata: {
-      title: "Resume",
-      description: "Naman Barkiya's resume.",
-    },
-  },
-  blogs: {
-    title: "Blogs",
-    description:
-      "Thoughts on AI, software engineering, and building in public.",
-    metadata: {
-      title: "Blogs",
-      description:
-        "Naman Barkiya's blog — thoughts on AI, software engineering, and building in public.",
+      title: "Projects | Felix Cobbinah",
     },
   },
   experience: {
     title: "Experience",
-    description: "Professional journey and career timeline.",
+    description: "From pastoral care to frontend engineering",
     metadata: {
-      title: "Experience",
-      description:
-        "Naman Barkiya's professional journey and experience timeline.",
+      title: "Experience | Felix Cobbinah",
+    },
+  },
+  skills: {
+    title: "Skills",
+    description: "Technical tools and human skills",
+    metadata: {
+      title: "Skills | Felix Cobbinah",
+    },
+  },
+  contributions: {
+    title: "Contributions",
+    description: "Open source and community work",
+    metadata: {
+      title: "Contributions | Felix Cobbinah",
+    },
+  },
+  blogs: {
+    title: "Blog",
+    description: "DEVotionals for developers",
+    metadata: {
+      title: "Blog | Felix Cobbinah",
     },
   },
 };

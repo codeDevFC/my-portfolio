@@ -1,62 +1,58 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Icons } from "@/components/common/icons";
 import Link from "next/link";
 
-import { Icons } from "@/components/common/icons";
-import { contributionsInterface } from "@/config/contributions";
-
-interface ContributionCardProps {
-  contributions: contributionsInterface[];
+interface Contribution {
+  id: string;
+  title: string;
+  description: string;
+  link?: string;
 }
 
-export default function ContributionCard({
-  contributions,
-}: ContributionCardProps) {
+interface ContributionCardProps {
+  contributions: Contribution[];
+}
+
+export default function ContributionCard({ contributions }: ContributionCardProps) {
+  if (!contributions || contributions.length === 0) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <Card className="border-dashed border-2 border-muted-foreground/20">
+          <CardContent className="p-6 text-center">
+            <p className="text-muted-foreground">No contributions yet. Check back soon!</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  const safeContributions = contributions.map((item, index) => ({
+    ...item,
+    id: item.id || `contribution-${index}`,
+  }));
+
   return (
-    <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
-      {contributions.map((contribution, id) => (
-        <Link
-          href={contribution.link}
-          target="_blank"
-          key={id}
-          className="w-full min-w-0 h-full"
-        >
-          <div className="relative rounded-lg border bg-background p-2 hover:bg-accent hover:text-accent-foreground transition-colors w-full h-full flex flex-col">
-            <Icons.externalLink
-              size={35}
-              className="absolute bottom-3 right-3 border bg-background rounded-full p-1.5 sm:p-2 cursor-pointer text-muted-foreground z-10 w-8 h-8 sm:w-10 sm:h-10"
-            />
-            <div className="flex min-h-[170px] flex-col justify-between rounded-md p-4 sm:p-6 pb-12 sm:pb-6 flex-grow">
-              <div className="flex flex-row justify-between items-start gap-2 mb-4 min-w-0">
-                <h3 className="font-bold flex space-x-2 items-center min-w-0 flex-1">
-                  <Icons.gitRepoIcon
-                    size={18}
-                    className="flex-shrink-0 sm:w-5 sm:h-5"
-                  />
-                  <span className="truncate text-sm sm:text-base min-w-0">
-                    {contribution.repo}
-                  </span>
-                </h3>
-                <Icons.gitBranch
-                  size={18}
-                  className="flex-shrink-0 sm:w-5 sm:h-5"
-                />
-              </div>
-              <div className="space-y-3 sm:space-y-4 min-w-0">
-                <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3 break-words">
-                  {contribution.contibutionDescription}
-                </p>
-                <p className="text-xs sm:text-sm text-muted-foreground flex space-x-2 items-center min-w-0">
-                  <Icons.gitOrgBuilding
-                    size={14}
-                    className="flex-shrink-0 sm:w-4 sm:h-4"
-                  />
-                  <span className="truncate min-w-0">
-                    {contribution.repoOwner}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </Link>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      {safeContributions.map((contribution) => (
+        <Card key={contribution.id} className="transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-border/50 hover:border-primary/20 group">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">
+              {contribution.link ? (
+                <Link href={contribution.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  {contribution.title}
+                  <Icons.externalLink className="inline-block w-3.5 h-3.5 ml-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              ) : (
+                contribution.title
+              )}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {contribution.description}
+            </p>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );

@@ -21,12 +21,11 @@ import { siteConfig } from "@/config/site";
 import { featuredSkills } from "@/config/skills";
 import { getFeaturedBlogs } from "@/lib/blogs";
 import { cn } from "@/lib/utils";
-import profileImg from "@/public/profile-img.jpg";
+import profileImg from "@/public/profile-img1.jpg";
 
 export const metadata: Metadata = {
-  title: `${pagesConfig.home.metadata.title}`,
-  description:
-    "Naman Barkiya - Applied AI Engineer working at the intersection of AI, data, and scalable software systems. Explore my projects, experience, and contributions.",
+  title: `Felix Cobbinah | Frontend Engineer & Digital Shepherd`,
+  description: "Felix Cobbinah - Frontend Engineer with a pastoral heart. Building human-centered digital experiences with React, TypeScript, and empathy.",
   alternates: {
     canonical: siteConfig.url,
   },
@@ -34,34 +33,15 @@ export const metadata: Metadata = {
 
 export default function IndexPage() {
   const featuredBlogs = getFeaturedBlogs();
-  // Structured data for personal portfolio
+  
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: siteConfig.authorName,
     url: siteConfig.url,
     image: siteConfig.ogImage,
-    jobTitle: "Applied AI Engineer",
-    sameAs: [siteConfig.links.github, siteConfig.links.twitter],
-  };
-
-  // Structured data for website as a software application (template)
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Next.js Portfolio Template",
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    author: {
-      "@type": "Person",
-      name: siteConfig.authorName,
-      url: siteConfig.url,
-    },
+    jobTitle: "Frontend Engineer | Digital Shepherd",
+    sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
   };
 
   return (
@@ -71,104 +51,126 @@ export default function IndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <Script
-        id="schema-software"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
 
-      <section className="space-y-6 pb-8 pt-6 mb-0 md:pb-12 md:py-20 lg:py-32 h-screen flex items-center">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center -mt-20">
-          <Image
-            src={profileImg}
-            height={100}
-            width={100}
-            sizes="100vw"
-            className="bg-primary rounded-full mb-0 h-auto md:mb-2 w-[60%] max-w-[16rem] border-8 border-primary"
-            alt="Naman Barkiya - Applied AI Engineer Portfolio"
-            priority
-          />
-          <AnimatedText
-            as="h1"
-            delay={0.2}
-            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            Naman Barkiya
-          </AnimatedText>
-          <AnimatedText
-            as="h3"
-            delay={0.4}
-            className="font-heading text-base sm:text-xl md:text-xl lg:text-2xl"
-          >
-            Applied AI Engineer
-          </AnimatedText>
-          <div className="mt-4 max-w-[42rem] text-center">
-            <p className="leading-normal text-muted-foreground text-sm sm:text-base">
-              Software engineer working at the intersection of AI, data, and
-              scalable software systems.
-            </p>
-          </div>
+      {/* Hero Section - Your Digital Shepherd Story */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        </div>
 
-          <div className="flex flex-col mt-10 items-center justify-center sm:flex-row sm:space-x-4 gap-3">
-            <AnimatedText delay={0.6}>
-              <Link
-                href={"/resume"}
-                target="_blank"
-                className={cn(buttonVariants({ size: "lg" }))}
-                aria-label="View resume"
-              >
-                <Icons.post className="w-4 h-4 mr-2" /> Resume
-              </Link>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+            {/* Profile Image with Ring */}
+            <AnimatedText delay={0.1}>
+              <div className="relative mb-8">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary/30 rounded-full blur opacity-30" />
+                <Image
+                  src={profileImg}
+                  height={180}
+                  width={180}
+                  className="relative rounded-full border-4 border-primary/20 shadow-2xl"
+                  alt="Felix Cobbinah - Frontend Engineer"
+                  priority
+                />
+              </div>
             </AnimatedText>
-            <AnimatedText delay={0.8}>
-              <Link
-                href={"/contact"}
-                rel="noreferrer"
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                    size: "lg",
-                  })
-                )}
-                aria-label="Contact Naman Barkiya"
-              >
-                <Icons.contact className="w-4 h-4 mr-2" /> Contact
-              </Link>
+
+            {/* Name */}
+            <AnimatedText
+              as="h1"
+              delay={0.2}
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+            >
+              <span className="gradient-text">Felix Cobbinah</span>
+            </AnimatedText>
+
+            {/* Title */}
+            <AnimatedText
+              as="h2"
+              delay={0.3}
+              className="mt-2 text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground"
+            >
+              Frontend Engineer <span className="text-primary">|</span> Digital Shepherd
+            </AnimatedText>
+
+            {/* Description */}
+            <AnimatedText delay={0.4}>
+              <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                Turning complex code into <span className="text-foreground font-medium">human experiences</span> with a pastoral heart.
+                Building with <span className="text-foreground font-medium">React, TypeScript,</span> and <span className="text-foreground font-medium">empathy</span>.
+              </p>
+            </AnimatedText>
+
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <AnimatedText delay={0.5}>
+                <Link
+                  href="/projects"
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                  )}
+                >
+                  <Icons.star className="w-4 h-4 mr-2" />
+                  View My Work
+                </Link>
+              </AnimatedText>
+              <AnimatedText delay={0.6}>
+                <Link
+                  href="/contact"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "border-primary/20 hover:border-primary/40"
+                  )}
+                >
+                  <Icons.contact className="w-4 h-4 mr-2" />
+                  Let's Connect
+                </Link>
+              </AnimatedText>
+            </div>
+
+            {/* Scroll indicator */}
+            <AnimatedText delay={0.7}>
+              <div className="mt-12 flex flex-col items-center gap-2 text-muted-foreground/60 text-sm">
+                <span>Scroll to explore</span>
+                <Icons.chevronDown className="h-5 w-5 animate-bounce" />
+              </div>
             </AnimatedText>
           </div>
-          <AnimatedText delay={1.2}>
-            <Icons.chevronDown className="h-6 w-6 mt-10" />
-          </AnimatedText>
         </div>
       </section>
+
+      {/* Projects Section */}
       <AnimatedSection
         direction="up"
-        className="container space-y-6 bg-muted py-10 my-14"
+        className="container space-y-6 bg-muted/50 py-16 my-8 rounded-2xl"
         id="projects"
       >
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <AnimatedText
             as="h2"
-            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+            className="font-heading text-3xl sm:text-4xl font-bold"
           >
             {pagesConfig.projects.title}
           </AnimatedText>
           <AnimatedText
             as="p"
             delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg"
           >
             {pagesConfig.projects.description}
           </AnimatedText>
         </div>
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProjects.map((exp, index) => (
               <AnimatedSection
                 key={exp.id}
                 delay={0.1 * (index + 1)}
                 direction="up"
-                className="h-full w-full min-w-0"
+                className="h-full"
               >
                 <ProjectCard project={exp} />
               </AnimatedSection>
@@ -177,33 +179,35 @@ export default function IndexPage() {
         </div>
         <AnimatedText delay={0.4} className="flex justify-center">
           <Link href="/projects">
-            <Button variant={"outline"} className="rounded-xl">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
+            <Button variant="outline" className="rounded-full px-6">
+              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All Projects
             </Button>
           </Link>
         </AnimatedText>
       </AnimatedSection>
+
+      {/* Experience Section */}
       <AnimatedSection
         direction="up"
-        className="container space-y-6 py-10 my-14"
+        className="container space-y-6 py-16 my-8"
         id="experience"
       >
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <AnimatedText
             as="h2"
-            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+            className="font-heading text-3xl sm:text-4xl font-bold"
           >
             {pagesConfig.experience.title}
           </AnimatedText>
           <AnimatedText
             as="p"
             delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg"
           >
             {pagesConfig.experience.description}
           </AnimatedText>
         </div>
-        <div className="mx-auto grid justify-center gap-4 md:w-full lg:grid-cols-3">
+        <div className="mx-auto grid justify-center gap-6 md:grid-cols-2 lg:grid-cols-3">
           {experiences.slice(0, 3).map((experience, index) => (
             <AnimatedSection
               key={experience.id}
@@ -216,97 +220,30 @@ export default function IndexPage() {
         </div>
         <AnimatedText delay={0.4} className="flex justify-center">
           <Link href="/experience">
-            <Button variant={"outline"} className="rounded-xl">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
+            <Button variant="outline" className="rounded-full px-6">
+              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All Experience
             </Button>
           </Link>
         </AnimatedText>
       </AnimatedSection>
+
+      {/* Skills Section */}
       <AnimatedSection
         direction="up"
-        className="container space-y-6 bg-muted py-10 my-14"
-        id="contributions"
-      >
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-          <AnimatedText
-            as="h2"
-            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
-          >
-            {pagesConfig.contributions.title}
-          </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.contributions.description}
-          </AnimatedText>
-        </div>
-        <ContributionCard contributions={featuredContributions} />
-        <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/contributions">
-            <Button variant={"outline"} className="rounded-xl">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
-            </Button>
-          </Link>
-        </AnimatedText>
-      </AnimatedSection>
-      <AnimatedSection
-        direction="up"
-        className="container space-y-6 py-10 my-14"
-        id="blogs"
-      >
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-          <AnimatedText
-            as="h2"
-            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
-          >
-            {pagesConfig.blogs.title}
-          </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.blogs.description}
-          </AnimatedText>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full items-stretch">
-          {featuredBlogs.map((blog, index) => (
-            <AnimatedSection
-              key={blog.slug}
-              delay={0.1 * (index + 1)}
-              direction="up"
-              className="h-full w-full min-w-0"
-            >
-              <BlogCard blog={blog} />
-            </AnimatedSection>
-          ))}
-        </div>
-        <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/blogs">
-            <Button variant={"outline"} className="rounded-xl">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
-            </Button>
-          </Link>
-        </AnimatedText>
-      </AnimatedSection>
-      <AnimatedSection
-        direction="up"
-        className="container space-y-6 bg-muted py-10 my-14"
+        className="container space-y-6 bg-muted/50 py-16 my-8 rounded-2xl"
         id="skills"
       >
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <AnimatedText
             as="h2"
-            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+            className="font-heading text-3xl sm:text-4xl font-bold"
           >
             {pagesConfig.skills.title}
           </AnimatedText>
           <AnimatedText
             as="p"
             delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg"
           >
             {pagesConfig.skills.description}
           </AnimatedText>
@@ -314,8 +251,81 @@ export default function IndexPage() {
         <SkillsCard skills={featuredSkills} />
         <AnimatedText delay={0.4} className="flex justify-center">
           <Link href="/skills">
-            <Button variant={"outline"} className="rounded-xl">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
+            <Button variant="outline" className="rounded-full px-6">
+              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All Skills
+            </Button>
+          </Link>
+        </AnimatedText>
+      </AnimatedSection>
+
+      {/* Contributions Section */}
+      <AnimatedSection
+        direction="up"
+        className="container space-y-6 py-16 my-8"
+        id="contributions"
+      >
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+          <AnimatedText
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-bold"
+          >
+            {pagesConfig.contributions.title}
+          </AnimatedText>
+          <AnimatedText
+            as="p"
+            delay={0.2}
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg"
+          >
+            {pagesConfig.contributions.description}
+          </AnimatedText>
+        </div>
+        <ContributionCard contributions={featuredContributions} />
+        <AnimatedText delay={0.4} className="flex justify-center">
+          <Link href="/contributions">
+            <Button variant="outline" className="rounded-full px-6">
+              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All Contributions
+            </Button>
+          </Link>
+        </AnimatedText>
+      </AnimatedSection>
+
+      {/* Blogs Section */}
+      <AnimatedSection
+        direction="up"
+        className="container space-y-6 bg-muted/50 py-16 my-8 rounded-2xl"
+        id="blogs"
+      >
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+          <AnimatedText
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-bold"
+          >
+            {pagesConfig.blogs.title}
+          </AnimatedText>
+          <AnimatedText
+            as="p"
+            delay={0.2}
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg"
+          >
+            {pagesConfig.blogs.description}
+          </AnimatedText>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredBlogs.map((blog, index) => (
+            <AnimatedSection
+              key={blog.slug}
+              delay={0.1 * (index + 1)}
+              direction="up"
+              className="h-full"
+            >
+              <BlogCard blog={blog} />
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedText delay={0.4} className="flex justify-center">
+          <Link href="/blogs">
+            <Button variant="outline" className="rounded-full px-6">
+              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All Blog Posts
             </Button>
           </Link>
         </AnimatedText>

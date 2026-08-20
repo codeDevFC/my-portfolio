@@ -1,50 +1,76 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { useEffect, useRef, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
-  id?: string;
+  key?: string | number;
 }
 
-export const AnimatedSection = ({
+export function AnimatedSection({
   children,
-  className = "",
+  className,
   delay = 0,
   direction = "up",
-  id,
-}: AnimatedSectionProps) => {
-  const directionOffset = {
-    up: { y: 50 },
-    down: { y: -50 },
-    left: { x: 50 },
-    right: { x: -50 },
+  key,
+  ...props
+}: AnimatedSectionProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  const getTransform = () => {
+    switch (direction) {
+      case "up": return "translateY(20px)";
+      case "down": return "translateY(-20px)";
+      case "left": return "translateX(20px)";
+      case "right": return "translateX(-20px)";
+      default: return "translateY(20px)";
+    }
   };
 
-  const initialOffset = directionOffset[direction];
-
   return (
-    <motion.div
-      id={id}
-      className={className}
-      initial={{ opacity: 0, ...initialOffset }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        transition: {
-          duration: 0.8,
-          delay,
-          ease: "easeOut" as const,
-        },
+    <div
+      ref={ref}
+      key={key}
+      className={cn(
+        "opacity-0 transition-all duration-700 ease-out",
+        className
+      )}
+      style={{
+        transform: getTransform(),
+        transitionDelay: `${delay}s`,
       }}
-      viewport={{ once: true, margin: "-100px" }}
+      {...props}
     >
       {children}
-    </motion.div>
+    </div>
   );
-};
+}

@@ -1,88 +1,54 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import * as React from "react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface TabItem {
-  value: string;
+  id: string;
   label: string;
   content: React.ReactNode;
 }
 
 interface ResponsiveTabsProps {
   items: TabItem[];
-  defaultValue?: string;
   className?: string;
 }
 
-export function ResponsiveTabs({
-  items,
-  defaultValue,
-  className,
-}: ResponsiveTabsProps) {
-  const [activeTab, setActiveTab] = React.useState(
-    defaultValue || items[0]?.value
-  );
-  const activeItem = items.find((item) => item.value === activeTab);
+export function ResponsiveTabs({ items, className }: ResponsiveTabsProps) {
+  const [activeTab, setActiveTab] = useState(items[0]?.id || "");
+
+  if (!items || items.length === 0) {
+    return null;
+  }
 
   return (
-    <div className={cn("w-full", className)}>
-      {/* Mobile: Dropdown */}
-      <div className="md:hidden mb-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="w-full justify-between">
-              {activeItem?.label || "Select option"}
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-full min-w-[200px]">
-            {items.map((item) => (
-              <DropdownMenuItem
-                key={item.value}
-                onClick={() => setActiveTab(item.value)}
-                className={cn(
-                  "cursor-pointer",
-                  activeTab === item.value && "bg-accent"
-                )}
-              >
-                {item.label}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+    <div className={cn("space-y-4", className)}>
+      <div className="flex flex-wrap gap-2 border-b border-border pb-2">
+        {items.map((item) => (
+          <Button
+            key={item.id}
+            variant={activeTab === item.id ? "default" : "ghost"}
+            onClick={() => setActiveTab(item.id)}
+            className="text-sm"
+          >
+            {item.label}
+          </Button>
+        ))}
       </div>
-
-      {/* Desktop: Tabs */}
-      <div className="hidden md:block">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            {items.map((item) => (
-              <TabsTrigger key={item.value} value={item.value}>
-                {item.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {items.map((item) => (
-            <TabsContent key={item.value} value={item.value}>
-              {item.content}
-            </TabsContent>
-          ))}
-        </Tabs>
+      <div className="mt-4">
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className={cn(
+              "transition-opacity duration-200",
+              activeTab === item.id ? "block" : "hidden"
+            )}
+          >
+            {item.content}
+          </div>
+        ))}
       </div>
-
-      {/* Mobile: Content */}
-      <div className="md:hidden">{activeItem?.content}</div>
     </div>
   );
 }

@@ -1,50 +1,70 @@
-import Image from "next/image";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Icons } from "@/components/common/icons";
 import Link from "next/link";
 
-import { Icons } from "@/components/common/icons";
-import { Button } from "@/components/ui/button";
-import ChipContainer from "@/components/ui/chip-container";
-import { ProjectInterface } from "@/config/projects";
+interface Project {
+  id?: string;
+  title: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  github?: string;
+  image?: string;
+}
 
 interface ProjectCardProps {
-  project: ProjectInterface;
+  project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="relative p-6 w-full bg-background border border-border rounded-lg h-full flex flex-col">
-      <div className="relative w-full h-[200px] flex-shrink-0">
-        <Image
-          className="rounded-lg border border-border object-cover"
-          src={project.companyLogoImg}
-          alt="img"
-          fill
-        />
-      </div>
-      <div className="pt-5 space-y-3 flex flex-col flex-grow">
-        <h5 className="text-2xl font-bold tracking-tight text-foreground">
-          {project.companyName}
-        </h5>
-        <p className="line-clamp-3 font-normal text-muted-foreground flex-grow">
-          {project.shortDescription}
+    <Card className="h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-border/50 hover:border-primary/20 group">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg font-semibold">
+          {project.link ? (
+            <Link
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors group-hover:text-primary"
+            >
+              {project.title}
+              <Icons.externalLink className="inline-block w-3.5 h-3.5 ml-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
+          ) : (
+            project.title
+          )}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 pt-0">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+          {project.description}
         </p>
-        <div className="flex gap-2 flex-wrap">
-          <ChipContainer textArr={project.category} />
-        </div>
-        <Link href={`/projects/${project.id}`} className="mt-auto">
-          <Button variant={"default"} className="mt-2 w-full sm:w-auto">
-            Read more
-            <Icons.chevronRight className="w-4 ml-1" />
-          </Button>
-        </Link>
-      </div>
-      <div className="absolute bottom-4 right-4 p-3 rounded-full bg-background border border-border hidden md:block">
-        {project.type === "Personal" ? (
-          <Icons.userFill className="h-4 w-4" />
-        ) : (
-          <Icons.work className="h-4 w-4" />
+        {project.github && (
+          <Link
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Icons.gitHub className="w-4 h-4 mr-1.5" />
+            View on GitHub
+          </Link>
         )}
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter className="flex flex-wrap gap-1.5 pt-0">
+        {project.tags.slice(0, 4).map((tag) => (
+          <Badge key={tag} variant="secondary" className="text-xs font-normal">
+            {tag}
+          </Badge>
+        ))}
+        {project.tags.length > 4 && (
+          <Badge variant="outline" className="text-xs font-normal">
+            +{project.tags.length - 4}
+          </Badge>
+        )}
+      </CardFooter>
+    </Card>
   );
 }

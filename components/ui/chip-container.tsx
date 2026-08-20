@@ -1,14 +1,17 @@
-import Chip from "./chip";
+import { cn } from "@/lib/utils";
 
 interface ChipContainerProps {
   textArr: string[];
+  className?: string;
 }
 
-export default function ChipContainer({ textArr }: ChipContainerProps) {
+export default function ChipContainer({ textArr, className }: ChipContainerProps) {
   return (
-    <div className="flex my-3 gap-2 flex-wrap">
-      {textArr.map((it, ind) => (
-        <Chip key={ind} content={it} />
+    <div className={cn("flex flex-wrap gap-2", className)}>
+      {textArr.map((it) => (
+        <span key={it} className="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
+          {it}
+        </span>
       ))}
     </div>
   );
