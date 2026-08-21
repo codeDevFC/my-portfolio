@@ -44,3 +44,11 @@ export const featuredProjects: Project[] = projects.slice(0, 2);
 
 // Alias for Projects (capitalized) for compatibility
 export const Projects = projects;
+  {
+    title: "Phoenix Gold Care Support",
+    description: "Comprehensive healthcare management platform for medication tracking, visits, and resident care.",
+    tags: ["Next.js", "Prisma", "Supabase", "PostgreSQL"],
+    link: "https://phoenix-gold-care-support.vercel.app",
+    github: "https://github.com/codeDevFC/phoenix-gold-care-support",
+    image: "/images/phoenix-gold.png",
+  },
