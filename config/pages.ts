@@ -11,6 +11,7 @@ export const pagesConfig = {
     description: "Building digital experiences with empathy and clarity",
     metadata: {
       title: "Projects | Felix Cobbinah",
+      description: "Explore my frontend projects built with React, TypeScript, and Next.js. From AI video intelligence to healthcare platforms.",
     },
   },
   experience: {
@@ -18,6 +19,7 @@ export const pagesConfig = {
     description: "From pastoral care to frontend engineering",
     metadata: {
       title: "Experience | Felix Cobbinah",
+      description: "My professional journey from pastoral ministry to frontend engineering.",
     },
   },
   skills: {
@@ -25,6 +27,7 @@ export const pagesConfig = {
     description: "Technical tools and human skills",
     metadata: {
       title: "Skills | Felix Cobbinah",
+      description: "My technical skills including React, TypeScript, Next.js, and human-centered design.",
     },
   },
   contributions: {
@@ -32,6 +35,7 @@ export const pagesConfig = {
     description: "Open source and community work",
     metadata: {
       title: "Contributions | Felix Cobbinah",
+      description: "My open source contributions and community work.",
     },
   },
   blogs: {
@@ -39,6 +43,15 @@ export const pagesConfig = {
     description: "DEVotionals for developers",
     metadata: {
       title: "Blog | Felix Cobbinah",
+      description: "DEVotionals - daily reflections for developers from a pastoral perspective.",
+    },
+  },
+  contact: {
+    title: "Contact",
+    description: "Let's connect and build something meaningful together",
+    metadata: {
+      title: "Contact | Felix Cobbinah",
+      description: "Get in touch with Felix Cobbinah - Frontend Engineer and Digital Shepherd.",
     },
   },
 };

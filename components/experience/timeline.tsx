@@ -8,6 +8,12 @@ interface TimelineProps {
   className?: string;
 }
 
+// Helper function to format date
+const formatDate = (date: Date | string): string => {
+  if (typeof date === 'string') return date;
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+
 export default function Timeline({ experiences, className }: TimelineProps) {
   const sortedExperiences = [...experiences].sort((a, b) => {
     return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
@@ -24,7 +30,7 @@ export default function Timeline({ experiences, className }: TimelineProps) {
               {experience.company} • {experience.location}
             </p>
             <p className="text-sm text-muted-foreground">
-              {experience.startDate} - {experience.endDate}
+              {formatDate(experience.startDate)} — {typeof experience.endDate === 'string' && experience.endDate === 'Present' ? 'Present' : formatDate(experience.endDate)}
             </p>
             <ul className="mt-2 list-disc list-inside space-y-1 text-sm">
               {experience.description.map((item, index) => (

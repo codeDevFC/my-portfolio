@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 import { AnimatedSection } from "@/components/common/animated-section";
 import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
 import { Icons } from "@/components/common/icons";
@@ -20,18 +19,21 @@ interface ExperienceDetailPageProps {
 }
 
 // Helper function to extract year from date
-const getYearFromDate = (date: Date): string => {
+const getYearFromDate = (date: Date | string): string => {
   return new Date(date).getFullYear().toString();
 };
 
 // Helper function to get duration text
-const getDurationText = (
-  startDate: Date,
-  endDate: Date | "Present"
-): string => {
+const getDurationText = ({
+  startDate,
+  endDate,
+}: {
+  startDate: Date | string;
+  endDate: Date | string | "Present";
+}): string => {
   const startYear = getYearFromDate(startDate);
   const endYear =
-    typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
+    typeof endDate === "string" && endDate === "Present" ? "Present" : getYearFromDate(endDate);
   return `${startYear} - ${endYear}`;
 };
 
@@ -40,13 +42,11 @@ export async function generateMetadata({
 }: ExperienceDetailPageProps): Promise<Metadata> {
   const { expId } = await params;
   const experience = experiences.find((c) => c.id === expId);
-
   if (!experience) {
     return {
       title: "Experience Not Found",
     };
   }
-
   return {
     title: `${experience.position} at ${experience.company} | Experience`,
     description: `Detailed information about my role as ${experience.position} at ${experience.company}.`,
@@ -68,6 +68,7 @@ export default async function ExperienceDetailPage({
 
   const tabItems = [
     {
+      id: "summary",
       value: "summary",
       label: "Summary",
       content: (
@@ -77,7 +78,7 @@ export default async function ExperienceDetailPage({
               Role Summary
             </h3>
             <ul className="space-y-3">
-              {experience.description.map((desc, idx) => (
+              {experience.description.map((desc: string, idx: number) => (
                 <li
                   key={idx}
                   className="text-base leading-relaxed flex items-start gap-3"
@@ -92,6 +93,7 @@ export default async function ExperienceDetailPage({
       ),
     },
     {
+      id: "achievements",
       value: "achievements",
       label: "Achievements",
       content: (
@@ -101,7 +103,7 @@ export default async function ExperienceDetailPage({
               Key Achievements
             </h3>
             <ul className="space-y-3">
-              {experience.achievements.map((achievement, idx) => (
+              {experience.achievements?.map((achievement: string, idx: number) => (
                 <li
                   key={idx}
                   className="text-base leading-relaxed flex items-start gap-3"
@@ -116,6 +118,7 @@ export default async function ExperienceDetailPage({
       ),
     },
     {
+      id: "skills",
       value: "skills",
       label: "Skills",
       content: (
@@ -124,10 +127,9 @@ export default async function ExperienceDetailPage({
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-muted-foreground">
               Technologies & Skills
             </h3>
-            <ChipContainer textArr={experience.skills} />
+            <ChipContainer textArr={experience.skills || []} />
             <p className="mt-4 text-sm text-muted-foreground">
-              These are the primary technologies and skills utilized during my
-              time at {experience.company}.
+              Technologies and tools I worked with in this role.
             </p>
           </div>
         </AnimatedSection>
@@ -177,31 +179,27 @@ export default async function ExperienceDetailPage({
                             href={experience.companyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground hover:text-foreground transition-colors"
                           >
-                            <Icons.externalLink className="w-4 h-4" />
+                            <Icons.externalLink className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
                           </a>
                         )}
                       </div>
-                      <p className="text-muted-foreground">
-                        {experience.location}
-                      </p>
+                      <p className="text-muted-foreground">{experience.location}</p>
                     </div>
                   </div>
                   <div className="flex justify-center sm:justify-end">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-                      {getDurationText(
-                        experience.startDate,
-                        experience.endDate
-                      )}
+                      {getDurationText({
+                        startDate: experience.startDate,
+                        endDate: experience.endDate,
+                      })}
                     </span>
                   </div>
                 </div>
               </div>
             </CardHeader>
-
             <CardContent>
-              <ResponsiveTabs items={tabItems} defaultValue="summary" />
+              <ResponsiveTabs items={tabItems} defaultTab="summary" />
             </CardContent>
           </Card>
         </AnimatedSection>

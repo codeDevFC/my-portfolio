@@ -13,10 +13,11 @@ interface TabItem {
 interface ResponsiveTabsProps {
   items: TabItem[];
   className?: string;
+  defaultTab?: string;
 }
 
-export function ResponsiveTabs({ items, className }: ResponsiveTabsProps) {
-  const [activeTab, setActiveTab] = useState(items[0]?.id || "");
+export function ResponsiveTabs({ items, className, defaultTab }: ResponsiveTabsProps) {
+  const [activeTab, setActiveTab] = useState(defaultTab || items[0]?.id || "");
 
   if (!items || items.length === 0) {
     return null;

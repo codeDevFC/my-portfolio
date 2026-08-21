@@ -9,6 +9,7 @@ interface AnimatedSectionProps {
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
   key?: string | number;
+  id?: string;
 }
 
 export function AnimatedSection({
@@ -17,6 +18,7 @@ export function AnimatedSection({
   delay = 0,
   direction = "up",
   key,
+  id,
   ...props
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,6 +62,7 @@ export function AnimatedSection({
     <div
       ref={ref}
       key={key}
+      id={id}
       className={cn(
         "opacity-0 transition-all duration-700 ease-out",
         className

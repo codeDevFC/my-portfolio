@@ -7,6 +7,11 @@ interface ExperienceCardProps {
   experience: Experience;
 }
 
+const formatDate = (date: Date | string): string => {
+  if (typeof date === 'string') return date;
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+
 export default function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
     <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-border/50 hover:border-primary/20">
@@ -21,7 +26,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
           </p>
           <p className="text-xs text-muted-foreground/60 mt-1 flex items-center gap-1">
             <Icons.calendar className="w-3 h-3" />
-            {experience.startDate} — {experience.endDate}
+            {formatDate(experience.startDate)} — {typeof experience.endDate === 'string' && experience.endDate === 'Present' ? 'Present' : formatDate(experience.endDate)}
           </p>
         </div>
       </CardHeader>

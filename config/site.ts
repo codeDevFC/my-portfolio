@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Felix Cobbinah",
   authorName: "Felix Cobbinah",
+  username: "codeDevFC",
   title: "Frontend Engineer | Digital Shepherd",
   description: "Turning complex code into human experiences with a pastoral heart. Building with React, TypeScript, and empathy.",
   keywords: "Frontend Engineer, React, Next.js, TypeScript, Empathetic Developer, UI/UX, Pastoral, Digital Shepherd",
