@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "L&J Agape Healthcare",
     description: "Responsive multi-service platform for dementia care and staffing services with compassionate design patterns.",
     tags: ["React", "Next.js", "Tailwind CSS", "Vercel"],
-    link: "https://lj-agape-healthcare.vercel.app",
+    link: "https://www.ljagapehealthcare.co.uk",
     github: "https://github.com/codeDevFC/lj-agape-healthcare",
     image: "/images/lj-agape.png",
   },
