@@ -1,6 +1,6 @@
 ---
 title: "Sunday vs. Monday"
-date: "2026-08-26"
+date: "2026-06-15"
 description: "On Sunday, I talked about eternal life. On Monday, I talk about npm install failing."
 tags: ["DEVotionals", "ProgrammingHumor", "NPM", "FrontendDeveloper"]
 coverImage: "/images/devotionals/sunday-monday.jpg"

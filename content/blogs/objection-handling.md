@@ -1,6 +1,6 @@
 ---
 title: "The Objection Handling Lesson"
-date: "2026-08-28"
+date: "2026-07-15"
 description: "The Product Manager says, 'Can we just change the font size?' The pastoral training says, 'What is the real need behind that request?'"
 tags: ["DEVotionals", "ProductManagement", "StakeholderManagement", "Communication"]
 coverImage: "/images/devotionals/objection-handling.jpg"

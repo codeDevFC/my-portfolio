@@ -1,6 +1,6 @@
 ---
 title: "The Sermon on Technical Debt"
-date: "2026-08-22"
+date: "2026-05-15"
 description: "I used to preach about sin. Now I preach about useEffect dependency arrays."
 tags: ["DEVotionals", "React", "TechDebt", "CleanCode"]
 coverImage: "/images/devotionals/tech-debt.jpg"

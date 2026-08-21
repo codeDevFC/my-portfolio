@@ -1,6 +1,6 @@
 ---
 title: "The Parable of the Loading Spinner"
-date: "2026-08-24"
+date: "2026-06-01"
 description: "A user waits 3 seconds for a page to load. If they see a blank screen, they feel abandoned. If they see a spinner, they feel hope."
 tags: ["DEVotionals", "UX", "Performance", "UserExperience"]
 coverImage: "/images/devotionals/loading-spinner.jpg"

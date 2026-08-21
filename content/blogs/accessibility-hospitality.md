@@ -1,6 +1,6 @@
 ---
 title: "Accessibility = Hospitality"
-date: "2026-08-23"
+date: "2026-05-22"
 description: "A church without a ramp excludes the disabled. A website without semantic HTML excludes the blind."
 tags: ["DEVotionals", "Accessibility", "A11y", "InclusiveDesign"]
 coverImage: "/images/devotionals/accessibility.jpg"

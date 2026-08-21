@@ -1,6 +1,6 @@
 ---
 title: "Confession Time"
-date: "2026-08-25"
+date: "2026-06-08"
 description: "Confession: I once spent 4 hours debugging a bug that was caused by a missing closing </div>."
 tags: ["DEVotionals", "ImposterSyndrome", "GrowthMindset", "SoftwareEngineering"]
 coverImage: "/images/devotionals/confession.jpg"

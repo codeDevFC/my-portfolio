@@ -1,6 +1,6 @@
 ---
 title: "The Shepherd vs. The Sheepdog"
-date: "2026-08-27"
+date: "2026-07-01"
 description: "There are two types of leaders: Shepherds and Sheepdogs."
 tags: ["DEVotionals", "TechLeadership", "TeamManagement", "MentalHealth"]
 coverImage: "/images/devotionals/shepherd.jpg"
